@@ -1,5 +1,4 @@
-# Todoapp
-
+# RECOLECTOR DE DATOS DE PLC'S Y SU VISUALIZACIÓN EN INTERFAZ GRÁFICA
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.2.
 
 ## Development server
