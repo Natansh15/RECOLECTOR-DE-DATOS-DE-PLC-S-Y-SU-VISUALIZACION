@@ -1,0 +1,70 @@
+.margen-horizontal {
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+/* Estilo personalizado para hacer los campos de entrada más pequeños horizontalmente */
+.form-control-sm {
+    max-width: 500px; /* Ajusta el ancho máximo según tus necesidades */
+}
+
+.espacio-en-blanco {
+    height: 20px; /* Altura del espacio en blanco */
+  }
+
+  .btn-acord:hover i {
+    color: rgb(95, 155, 71); /* Color cuando el cursor pasa sobre el icono */
+  }
+
+  .hr--large {
+    margin: 60px auto;
+}
+
+/* Estilo para hacer que los botones en el acordeón tengan un color al pasar el cursor */
+.accordion-button:hover {
+  background-color: rgb(75, 130, 192);
+  color: #fff;
+}
+
+input[type="text"],
+input[type="number"] {
+  text-align: center;
+}
+
+
+.input-group {
+  position: relative;
+}
+
+.input-group__input {
+  font: inherit;
+  color: #000000;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  outline: 1px solid #cdcfe2; /* Cambié el valor de .5px a 1px para que sea válido */
+  background-color: transparent;
+  transition: outline-color 500ms;
+}
+
+.input-group__input:focus,
+.input-group__input:valid {
+  outline-color: #cdcfe2;
+}
+
+.input-group__label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(10px, 10px); /* Corregí "translate" a "transform" */
+  color: #000000;
+  transition: transform 500ms, scale 500ms; /* Cambié "translate" a "transform" */
+}
+
+.input-group__input:focus + .input-group__label,
+.input-group__input:valid + .input-group__label {
+  padding-inline: 5px;
+  transform: translate(10px, -14px); /* Corregí "translate" a "transform" */
+  transform: scale(1); /* Cambié "scale" a "transform" */
+  background-color: transparent;
+}

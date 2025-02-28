@@ -1,0 +1,147 @@
+<div class="container text-center my-5">
+  <div class="card-body">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-3">
+          <h3 class="mb-4">Método a Usar</h3>
+        </div>
+      </div>
+      <div class="accordion" id="accordionPanelsStayOpenExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#tcpip" aria-expanded="true" aria-controls="tcpip">
+            TCP/IP
+          </button>
+        </h2>
+        <div id="tcpip" class="accordion-collapse collapse " data-bs-parent="#accordionPanelsStayOpenExample">
+          <div class="accordion-body">
+            <form [formGroup]="tcpipForm" (ngSubmit)="TCPIP(tcpipForm.value.ip, tcpipForm.value.pt, tcpipForm.value.plc1, tcpipForm.value.mode, tcpipForm.value.var2, tcpipForm.value.tipo, tcpipForm.value.bsd)">
+              <div class="input-group mb-3">
+                <input type="text" formControlName="ip" class="form-control input-group__input" id="ip" placeholder="192.0.0.0" required />
+                <label for="ip" class="input-group__label">IP</label>
+              </div>
+              <div class="input-group mb-3">
+                <input type="number" formControlName="pt" class= "form-control input-group__input" id="port" placeholder="44818" required />
+                <label for="port" class="input-group__label">PORT</label>
+              </div>
+              <div class="input-group mb-3">
+                <h4 class="mb-3">Variables:</h4>
+                <div class="input-group mb-3">
+                  <input type="text" formControlName="plc1" class="form-control input-group__input" id="plc1" placeholder="B16:0/0" required />
+                  <label for="plc1" class="input-group__label">TAG DE VARIABLE</label>
+                </div>
+                <div class="input-group mb-3">
+                  <input type="text" formControlName="tipo" class="form-control input-group__input" id="tipo" placeholder="Temperatura" required />
+                  <label for="tipo" class="input-group__label">NOMBRE DE VARIABLE</label>
+                </div>
+              </div>
+              <div class="input-group mb-3 d-flex align-items-center justify-content-center">
+                <select formControlName="bsd" class="form-control input-group__input text-center" id="bsd"  required>
+                  <option *ngFor="let collectionName of collectionNames" [value]="collectionName">{{ collectionName }} </option> 
+                </select>  
+                <label for="bsd" class="input-group__label">SELECCIONA UNA COLECCION   <i class="bi bi-caret-down"></i></label>
+              </div>
+
+              <div class="spinner-border text-primary" role="status" *ngIf="showSpinner">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+              
+              <div *ngIf="showSuccessMessage" class="alert alert-danger">
+                CONEXION FALLIDA. ACCEDIENDO A REGISTROS...
+              </div>
+              <br>
+              <button type="submit" class="btn btn-success" [disabled]="!tcpipForm.valid" (click)="handleSubmit()">Acceder</button>
+              
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#modbus" aria-expanded="false" aria-controls="modbus">
+            MODBUS
+          </button>
+        </h2>
+        <div id="modbus" class="accordion-collapse collapse " data-bs-parent="#accordionPanelsStayOpenExample">
+          <div class="accordion-body">
+            <form [formGroup]="modbusForm" (ngSubmit)="MODBUS(modbusForm.value.ipmod, modbusForm.value.ptmod, modbusForm.value.var1, modbusForm.value.var2, modbusForm.value.mode, modbusForm.value.tipo, modbusForm.value.bsd)">
+              <div class="input-group mb-3">
+                <input type="text" formControlName="ipmod" class="form-control input-group__input" id="ipmod" placeholder="192.0.0.0" required />
+                <label for="ipmod" class="input-group__label">IP</label>
+              </div>
+              <div class="input-group mb-3">
+                <input type="number" formControlName="ptmod" class="form-control input-group__input" id="ptmod" placeholder="502" required />
+                <label for="ptmod" class="input-group__label">PORT</label>
+              </div>
+              <div class="input-group mb-3">
+                <h4 class="mb-3">Variables:</h4>
+                <div class="input-group mb-3">
+                  <input type="number" formControlName="var1" class="form-control input-group__input" id="var1" min="0" max="9" placeholder="2" required />
+                  <label for="var1" class="input-group__label">POSICIÓN</label>
+                </div>
+                <div class="input-group mb-3">
+                  <input type="text" formControlName="tipo" class="form-control input-group__input" id="tipo" placeholder="Temperatura" required />
+                  <label for ="tipo" class="input-group__label">NOMBRE DE VARIABLE</label>
+                </div>
+              </div>
+              <div class="input-group mb-3 d-flex align-items-center justify-content-center">
+                <select formControlName="bsd" class="form-control input-group__input text-center" id="bsd"  required>
+                  <option *ngFor="let collectionName of collectionNames" [value]="collectionName">{{ collectionName }} </option> 
+                </select>  
+                <label for="bsd" class="input-group__label">SELECCIONA UNA COLECCION   <i class="bi bi-caret-down"></i></label>
+              </div>
+              <div class="spinner-border text-primary" role="status" *ngIf="showSpinner">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+              
+              <div *ngIf="showSuccessMessage" class="alert alert-danger">
+                CONEXION FALLIDA. ACCEDIENDO A REGISTROS...
+              </div>
+              <br>
+              <button type="submit" class="btn btn-success" [disabled]="!modbusForm.valid" (click)="handleSubmit()">Acceder</button>
+              
+            </form>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#base" aria-expanded="false" aria-controls="base">
+            ACCEDER A BASE DE DATOS
+          </button>
+        </h2>
+        <div id="base" class="accordion-collapse collapse " data-bs-parent="#accordionPanelsStayOpenExample">
+          <div class="accordion-body">
+            <form [formGroup]="basedatosForm" (ngSubmit)="BSD( basedatosForm.value.bsd, basedatosForm.value.tipo, basedatosForm.value.mode, basedatosForm.value.var2)">
+
+              <div class="input-group mb-3 d-flex align-items-center justify-content-center">
+                <select formControlName="bsd" class="form-control input-group__input text-center" id="bsd"  required>
+                  <option *ngFor="let collectionName of collectionNames" [value]="collectionName">{{ collectionName }} </option> 
+                </select>  
+                <label for="bsd" class="input-group__label">SELECCIONA UNA COLECCION   <i class="bi bi-caret-down"></i></label>
+              </div>
+              
+              <div class="input-group mb-3">
+                <input type="text" formControlName="tipo" class="form-control input-group__input" id="tipo" placeholder="Temperatura" required />
+                <label for ="tipo" class="input-group__label">NOMBRE DE VARIABLE</label>
+              </div>
+              
+              <div class="spinner-border text-primary" role="status" *ngIf="showSpinner">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+              
+              <div *ngIf="showSuccessMessage" class="alert alert-danger">
+                CONEXION FALLIDA. ACCEDIENDO A REGISTROS...
+              </div>
+              <br>
+              <button type="submit" class="btn btn-success" [disabled]="!basedatosForm.valid" (click)="handleSubmit()">Acceder</button>
+              
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

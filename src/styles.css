@@ -1,0 +1,18 @@
+/* Define una clase para la tabla que se ubicará a la derecha */
+.tabla-derecha {
+    float: right; /* Alinea la tabla a la derecha */
+    margin-left: 20px; /* Agrega un margen izquierdo para el espacio entre la tabla y el contenido a la izquierda */
+    max-width: 80%; /* Establece un ancho máximo para que la tabla no ocupe toda la página */
+}
+
+/* Estilos opcionales para el contenido a la izquierda de la tabla */
+.contenido-izquierda {
+    margin-right: 20px;
+    margin-top: 100px; 
+    margin-left: 80px;
+}
+
+/* Limpia el flotador para evitar problemas de diseño */
+.clear {
+    clear: both;
+}
