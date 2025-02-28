@@ -37,7 +37,7 @@ CÓMO EJECUTAR EL PROYECTO
 
 Clona el repositorio:
 
-git clone https://github.com/tu-usuario/tu-repo.git
+git clone ""
 
 Instala las dependencias:
 
